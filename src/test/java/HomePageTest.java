@@ -5,12 +5,9 @@ import org.junit.runners.Parameterized;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.List;
 
 import static PageObject.HomePage.*;
 import static org.junit.Assert.assertEquals;
@@ -18,11 +15,11 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class HomePageTest {
-    private final By message;
-    private final By button;
+    private String message;
+    private By button;
     private  boolean isVisible;
 
-    public HomePageTest(By button,By message, boolean isVisible) {
+    public HomePageTest(By button,String message, boolean isVisible) {
         this.button=button;
         this.message=message;
         this.isVisible=isVisible;
@@ -31,15 +28,15 @@ public class HomePageTest {
     @Parameterized.Parameters
     public static Object[][] getMessage () {
         return new Object[][]{
-                {howCost, itCost, true},
-                {howManyToOne, oneOrderOneScooter, true},
-                {orderTimeRange, orderTimeRangeDescript, true},
-                {scooterWhenIGet, scooterWhenIGetSince, true},
-                {scooterWhenITake, scooterWhenITakeAbout, true},
-                {scooterCharge, scooterChargeTake, true},
-                {orderCancel, conditionsOrderCancel, true},
-                {liveBehind, liveBehindGet, true},
-                {orderCancel,scooterChargeTake, false}
+                {howCost, "Сутки — 400 рублей. Оплата курьеру — наличными или картой.", true},
+                {howManyToOne, "Пока что у нас так: один заказ — один самокат. Если хотите покататься с друзьями, можете просто сделать несколько заказов — один за другим.", true},
+                {orderTimeRange, "Допустим, вы оформляете заказ на 8 мая. Мы привозим самокат 8 мая в течение дня. Отсчёт времени аренды начинается с момента, когда вы оплатите заказ курьеру. Если мы привезли самокат 8 мая в 20:30, суточная аренда закончится 9 мая в 20:30.", true},
+                {scooterWhenIGet, "Только начиная с завтрашнего дня. Но скоро станем расторопнее.", true},
+                {scooterWhenITake, "Пока что нет! Но если что-то срочное — всегда можно позвонить в поддержку по красивому номеру 1010.", true},
+                {scooterCharge, "Самокат приезжает к вам с полной зарядкой. Этого хватает на восемь суток — даже если будете кататься без передышек и во сне. Зарядка не понадобится.", true},
+                {orderCancel, "Да, пока самокат не привезли. Штрафа не будет, объяснительной записки тоже не попросим. Все же свои.", true},
+                {liveBehind, "Да, обязательно. Всем самокатов! И Москве, и Московской области.", true},
+                {orderCancel,"Да, обязательно. Всем самокатов! И Москве, и Московской облас.", false}
         };
     }
 
@@ -51,11 +48,11 @@ public class HomePageTest {
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(orderButton));
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(button));
         driver.findElement(button).click();
-        List<WebElement> elements = driver.findElements(message);
-
-            assertEquals(isVisible, elements.size()!=0);
+        boolean actual = driver.findElement(By.xpath(".//p[text()='"+message+"']"))!=null;
+        assertEquals(isVisible, actual);
         driver.quit();
+    }
    }
 
-}
+
 
