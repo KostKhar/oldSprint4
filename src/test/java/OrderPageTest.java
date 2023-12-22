@@ -23,6 +23,7 @@ public class OrderPageTest {
     public void startChrome(WebDriver driver){
         WebDriverManager.chromedriver().setup();
       this.driver = new ChromeDriver();
+        driver.get("https://qa-scooter.praktikum-services.ru/");
     }
 
     public void startFox(WebDriver driver){
@@ -31,6 +32,7 @@ public class OrderPageTest {
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability("marionette", true);
         this.driver = new FirefoxDriver(capabilities);
+        this.driver.get("https://qa-scooter.praktikum-services.ru/");
             }
 
 
@@ -39,7 +41,6 @@ public class OrderPageTest {
     @Test
     public void checkOrderByUpButton () {
         startFox(driver);
-        driver.get("https://qa-scooter.praktikum-services.ru/");
         HomePage objHomePage = new HomePage(driver);
        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(orderButton));
        OrderPage hP= new OrderPage(driver);
@@ -56,7 +57,6 @@ public class OrderPageTest {
     @Test
     public void checkOrderByMiddleButton () {
         startChrome(driver);
-        driver.get("https://qa-scooter.praktikum-services.ru/");
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(orderButton));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(orderMiddleButton));
         driver.findElement(orderMiddleButton).click();
