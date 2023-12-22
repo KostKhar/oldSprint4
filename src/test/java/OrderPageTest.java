@@ -56,7 +56,7 @@ public class OrderPageTest {
     }
     @Test
     public void checkOrderByMiddleButton () {
-        startChrome(driver);
+        startFox(driver);
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(orderButton));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(orderMiddleButton));
         driver.findElement(orderMiddleButton).click();

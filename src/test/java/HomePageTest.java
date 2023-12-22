@@ -46,7 +46,6 @@ public class HomePageTest {
     @Test
     public void checkListButton() {
         WebDriverManager.firefoxdriver().setup();
-        WebDriverManager.firefoxdriver().setup();
         System.setProperty("webdriver.gecko.driver", "C:\\cygwin64\\home\\admin\\untitled\\geckodriver.exe");
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         capabilities.setCapability("marionette", true);
