@@ -11,8 +11,10 @@ O
 src/test/java/HomePageTest.java,4\8\4806f4e04fb8235efe4c3bcab3b91247b01844f4
 P
  src/test/java/OrderPageTest.java,9\a\9aa0eded8c5f927793ed77054ccc8214334b31f4
-S
-#src/test/java/ChromeCreateTest.java,4\4\441f9ce20b28b4c49d5ca5993b239fc2d3679f1c
 :
 
 .gitignore,a\5\a5cc2925ca8258af241be7e5b0381edf30266302
+x
+Hsrc/test/java/ru/qa/scooter/praktikum/services/page/object/HomePage.java,7\0\7030ec0730d667594352eddf353d80848636088d
+y
+Isrc/test/java/ru/qa/scooter/praktikum/services/page/object/OrderPage.java,5\e\5e6dc106b17938d1b996088c0f388996136c3d9a
